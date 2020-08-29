@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"  crossorigin="anonymous"></script>
+ <!--
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+ -->
+</head>
+<body>
+<div class="container">
+  <ul class="list-group" id="main-list">
+    <th:block th:fragment="FnMoreList">
+    <li class="list-group-item" th:each="element : ${list}">
+      <div th:text="${element}"></div>
+    </li>
+    </th:block>
+  </ul>
+  <button type="button" class="btn btn-primary" id="more-button">More</button>
+</div>
+<script type="text/javascript">
+  $(function () {
+    var start = 200;
+    $("#more-button").on("click", function () {
+      $.ajax({
+        url : '/moreList?start=' + start,
+        type: 'GET',
+        datatype: 'html'
+      })
+       .done((data) => {
+         start += 200;
+         const y = document.documentElement.scrollTop;
+         var appendHtml = $($.parseHTML(data));
+         $("#main-list").append(appendHtml);
+         document.documentElement.scrollTop = y;
+       });
+    });
+  });
+</script>
+</body>
+</html>
