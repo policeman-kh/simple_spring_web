@@ -3,3 +3,14 @@ spring:
     mode: HTML
     cache: false
     prefix: file:src/main/resources/templates/
+
+# Enable http2 disabled to use h2c.
+server:
+  http2:
+    enabled: false
+# Enable /actuator/prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,prometheus
