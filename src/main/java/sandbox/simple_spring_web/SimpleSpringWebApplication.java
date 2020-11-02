@@ -6,6 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.context.annotation.Bean;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import sandbox.simple_spring_web.client.ZipAddressClient;
+
 @SpringBootApplication
 public class SimpleSpringWebApplication {
 
@@ -17,5 +23,14 @@ public class SimpleSpringWebApplication {
     @Bean
     public TomcatConnectorCustomizer connectorCustomizer() {
         return (connector) -> connector.addUpgradeProtocol(new Http2Protocol());
+    }
+
+    @Bean
+    ZipAddressClient zipAddressClient() {
+        return new Retrofit.Builder()
+                .baseUrl("https://zipcloud.ibsnet.co.jp")
+                .addConverterFactory(JacksonConverterFactory.create(new ObjectMapper()))
+                .build()
+                .create(ZipAddressClient.class);
     }
 }
