@@ -21,9 +21,11 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	// To enable /actuator/prometheus.
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'io.micrometer:micrometer-registry-prometheus:1.6.0'
+
 	// For zipkin tracing.
 	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.5.RELEASE'
 	implementation 'io.zipkin.brave:brave-instrumentation-okhttp3:5.12.6'
@@ -33,6 +35,9 @@ dependencies {
 	// For retrofit client
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 	implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+
+	// For circuit breaker
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:1.0.4.RELEASE'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
