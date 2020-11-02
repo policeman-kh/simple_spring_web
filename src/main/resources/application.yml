@@ -3,11 +3,28 @@ spring:
     mode: HTML
     cache: false
     prefix: file:src/main/resources/templates/
+  main:
+    allow-bean-definition-overriding: true
+
+# Zipkin settings
+brave:
+  zipkin:
+    baseUrl: http://localhost:9411/
+    name: service1
+
+# zipkin:
+#   service:
+#     name: service1
+#     base-url: http://localhost:9411/
+# sleuth:
+#   sampler:
+#     percentage: 1.0
 
 # Enable http2 disabled to use h2c.
 server:
   http2:
     enabled: false
+
 # Enable /actuator/prometheus
 management:
   endpoints:

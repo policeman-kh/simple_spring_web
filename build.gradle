@@ -24,6 +24,12 @@ dependencies {
 	// To enable /actuator/prometheus.
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'io.micrometer:micrometer-registry-prometheus:1.6.0'
+	// For zipkin tracing.
+	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.5.RELEASE'
+	implementation 'io.zipkin.brave:brave-instrumentation-okhttp3:5.12.6'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave:2.15.2'
+	implementation 'io.zipkin.reporter2:zipkin-sender-okhttp3:2.15.2'
+
 	// For retrofit client
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 	implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
